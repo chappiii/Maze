@@ -1,16 +1,141 @@
-N.B. Run the programs using the commands “python A.py maze.json” for A*, “python BFS.py maze.json” for BFS, or “python DFS.py maze.json” for DFS to solve the maze in the provided JSON file. 
-Implementation Details
-A* Implementation- initializes the maze, start, and goal positions, using a priority queue (heapq) and the Manhattan distance heuristic to prioritize nodes in the open list based on their f-score (g-score + heuristic). It explores nodes with the lowest f-score, updating costs (g_score) and paths (came_from) as it explores neighbors, stopping when the goal is reached, or all nodes are exhausted.
-BFS Implementation- initializes the maze, start, and goal positions, using a queue-based frontier (QueueFrontier) to explore nodes level-by-level. It tracks explored states, adding unvisited neighbors to the frontier, and stops when the goal is reached, or all nodes are exhausted.
-DFS Implementation- initializes a maze, start, and goal using a stack-based frontier (StackFrontier) to explore nodes using depth-first search. It tracks explored states and explores deeper nodes first by adding unvisited neighbors to the frontier. The solution path is reconstructed by backtracking from the goal.
-Performance Metrics
-Path Optimality: Both A* and BFS found the optimal path. DFS found the same path in this case but is not guaranteed.
-Path Length: All three found the same path length (26 steps).
-Memory Usage: A* used the least memory effectively. BFS used the most memory due to extensive state storage. DFS used more memory than A* but less than BFS.
-Runtime: A* was the fastest, followed by DFS, then BFS.
-Strengths and Weaknesses
-A* Strengths: Optimal, Efficient, Flexibility. A* Weaknesses: Memory Intensive, Heuristic Dependent
-BFS Strengths: Guaranteed Optimality, Simple Implementation. BFS Weaknesses: High Memory Usage, Slow
-DFS Strengths: Memory Efficient, Fast in Some Cases. DSF Weaknesses: Non-optimal, Can Get Stuck 
-Most Suitable Algorithm for the Maze Problem
-A* Search Algorithm is the most suitable due to its optimality and efficiency in finding the shortest path. BFS is a good alternative if the path length in terms of steps is the primary concern. DFS can be considered for smaller or simpler mazes where finding any path quickly is more critical than finding the optimal path. In the provided test case, all three algorithms found the goal, but A* was the fastest and used the least memory due to its heuristic guidance, making it the most efficient and suitable choice for the maze problem.
+# Maze Solver: A*, BFS, and DFS Algorithms
+
+This project implements **A***, **Breadth-First Search (BFS)**, and **Depth-First Search (DFS)** algorithms to solve a maze provided in a JSON file. The solution compares performance metrics like path length, runtime, memory usage, and optimality.
+
+---
+
+## Table of Contents
+
+- [Usage Instructions](#usage-instructions)
+- [Algorithm Implementations](#algorithm-implementations)
+- [Performance Metrics](#performance-metrics)
+- [Strengths and Weaknesses](#strengths-and-weaknesses)
+- [Most Suitable Algorithm](#most-suitable-algorithm)
+- [Conclusion](#conclusion)
+- [Sample Maze Input](#sample-maze-input)
+- [Future Improvements](#future-improvements)
+- [Contributors](#contributors)
+- [License](#license)
+
+---
+
+## Usage Instructions
+
+Run the program with the following commands:
+
+- **A*** Algorithm:
+   ```bash
+   python A.py maze.json
+   ```
+
+- **Breadth-First Search (BFS):**
+   ```bash
+   python BFS.py maze.json
+   ```
+
+- **Depth-First Search (DFS):**
+   ```bash
+   python DFS.py maze.json
+   ```
+
+Make sure to replace `maze.json` with your maze file.
+
+---
+
+## Algorithm Implementations
+
+### 1. **A\*** Algorithm
+- **Initialization**: Uses a **priority queue** (`heapq`) and the **Manhattan distance** heuristic.
+- **Mechanism**: Prioritizes nodes based on their f-score:
+   \[
+   \text{f-score} = \text{g-score} + \text{heuristic}
+   \]
+- **Behavior**: Explores nodes with the lowest f-score, updates costs (`g_score`), and tracks the path (`came_from`).
+- **Goal**: Stops when the goal is reached or all nodes are exhausted.
+
+### 2. **Breadth-First Search (BFS)**
+- **Initialization**: Uses a **queue-based frontier** to explore nodes level-by-level.
+- **Mechanism**: Adds unvisited neighbors to the queue while tracking explored states.
+- **Goal**: Stops when the goal is reached or all nodes are exhausted.
+
+### 3. **Depth-First Search (DFS)**
+- **Initialization**: Uses a **stack-based frontier** to explore nodes deeper first.
+- **Mechanism**: Tracks explored states and reconstructs the path by backtracking.
+- **Goal**: Stops when the goal is reached or all nodes are exhausted.
+
+---
+
+## Performance Metrics
+
+| **Metric**         | **A\***          | **BFS**          | **DFS**          |
+|---------------------|------------------|------------------|------------------|
+| **Path Optimality** | Optimal          | Optimal          | Not Guaranteed   |
+| **Path Length**     | 26 steps         | 26 steps         | 26 steps         |
+| **Memory Usage**    | Least Memory     | Most Memory      | Moderate Memory  |
+| **Runtime**         | Fastest          | Slowest          | Faster than BFS  |
+
+---
+
+## Strengths and Weaknesses
+
+### **A\***
+- **Strengths**:
+   - Finds the optimal path.
+   - Efficient due to heuristic guidance.
+   - Flexible for different heuristics.
+- **Weaknesses**:
+   - Memory-intensive.
+   - Performance depends on the heuristic.
+
+### **Breadth-First Search (BFS)**
+- **Strengths**:
+   - Guaranteed optimal path.
+   - Simple and easy to implement.
+- **Weaknesses**:
+   - High memory usage.
+   - Slow for large mazes.
+
+### **Depth-First Search (DFS)**
+- **Strengths**:
+   - Memory efficient.
+   - Fast for simple or small mazes.
+- **Weaknesses**:
+   - Non-optimal paths.
+   - Can get stuck in loops or dead-ends.
+
+---
+
+## Most Suitable Algorithm
+
+The **A\*** Search Algorithm is the most suitable for solving the maze problem due to its:
+
+- **Optimality**: Finds the shortest path.
+- **Efficiency**: Uses heuristic guidance to minimize exploration.
+- **Memory Usage**: Better than BFS.
+
+### Alternatives:
+- **BFS**: Suitable when path optimality is critical and memory usage is not a concern.
+- **DFS**: Works for small or simple mazes where finding *any path quickly* is more important than the optimal path.
+
+---
+
+## Conclusion
+
+All three algorithms successfully solved the provided maze with the same path length (26 steps). However:
+
+- **A\*** was the fastest and most memory-efficient.
+- **BFS** guaranteed optimality but consumed the most memory.
+- **DFS** was faster than BFS but is not guaranteed to find the optimal path.
+
+For most maze-solving problems, **A\*** is the preferred choice.
+
+---
+
+## Future Improvements
+- Support for other heuristics in A\*.
+- Visualization of paths explored.
+- Benchmarking on larger mazes.
+
+---
+
+---
