@@ -14,8 +14,6 @@ This project implements **A***, **Breadth-First Search (BFS)**, and **Depth-Firs
 - [Conclusion](#conclusion)
 - [Sample Maze Input](#sample-maze-input)
 - [Future Improvements](#future-improvements)
-- [Contributors](#contributors)
-- [License](#license)
 
 ---
 
